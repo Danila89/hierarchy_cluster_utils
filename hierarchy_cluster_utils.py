@@ -123,26 +123,3 @@ def get_distances_and_counts(
         distances[M[i]] = node.dist
         counts[M[i]] = node.get_count()
     return [distances[i] for i in clusters_array], [counts[i] for i in clusters_array]
-
-
-def get_num_steps(
-    ancestor_node: ClusterNode,
-    descendant_node: ClusterNode
-) -> Optional[int]:
-    """
-    Returns number of steps from the ancestor node to the descendant node.
-    :param ancestor_node: ClusterNode - ancestor node
-    :param descendant_node: ClusterNode - descendant node
-    :return: number of steps from the ancestor node to the descendant node or None if the descendant node is not a descendant of the ancestor node
-    """
-    if ancestor_node is None or descendant_node is None:
-        return None
-    if ancestor_node.get_id() == descendant_node.get_id():
-        return 0
-    left = get_num_steps(ancestor_node.get_left(), descendant_node)
-    if left is not None:
-        return left + 1
-    right = get_num_steps(ancestor_node.get_right(), descendant_node)
-    if right is not None:
-        return right + 1
-    return None
