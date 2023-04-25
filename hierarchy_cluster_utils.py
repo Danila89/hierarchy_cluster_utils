@@ -34,7 +34,7 @@ def search_for_node(
     :return: ClusterNode with the given id if it exists in the subtree, None otherwise
     """
     if cur_node is None:
-        return False
+        return None
     if cur_node.get_id() == target:
         return cur_node
     left = search_for_node(cur_node.get_left(), target)
@@ -105,8 +105,8 @@ def get_leaves_ids(node: ClusterNode) -> List[int]:
 
 
 def get_distances_and_counts(
-        linkage_matrix: np.ndarray,
-        clusters_array: np.ndarray
+    linkage_matrix: np.ndarray,
+    clusters_array: np.ndarray
 ) -> Tuple[List[float], List[int]]:
     """
     Calculates intracluster distances and cluster sizes for each cluster according to the given linkage matrix.
